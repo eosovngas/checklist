@@ -1,19 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <!-- LOGO COORPORATIVO -->
   <a class="navbar-brand" href="#">
-    <img src="#" width="30" height="30" alt="">
+    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    CHECKLIST
   </a>
   
-  <a class="navbar-brand" href="#">CHECKLIST</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <!-- Navbar lado Izquierdo --> 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
+      
+      <!-- si el usurio esta login muestra, en otro caso se oculta-->
+      <% if user_signed_in? %>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Perfil <span class="sr-only">(current)</span></a>
       </li>
+      <% end %>
+
     </ul>
+
+     <!-- Navbar lado derecho --> 
+     <ul class="nav navbar-nav navbar-right">
+      <!-- Validando usuario logueado boton salir --> 
+        <% if current_user.nil? %>
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= new_user_session_path %>">Iniciar sesion <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= new_user_registration_path %>">Registrarse <span class="sr-only">(current)</span></a>
+        </li>
+        <% else %>
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= destroy_user_session_path %>" data-method="delete">Cerrar Sesion <span class="sr-only">(current)</span></a>
+        </li>
+        <% end %>
+        <!-- Terminando validacion --> 
   </div>
 </nav>

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  
+  <!-- logo Navbar --> 
+  <a class="navbar-brand" href="<%= root_path %>">
+    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    CHECKLIST
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar lado Izquierdo --> 
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      
+      <!-- si el usurio esta login muestra, en otro caso se oculta-->
+      <% if user_signed_in? %>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Perfil <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <!-- Barra de busqueda-->
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Buscar CHECKLIST">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+      <% end %>
+
+    </ul>
+
+     <!-- Navbar lado derecho Iniciar sesion y Registrarse --> 
+     <ul class="nav navbar-nav navbar-right">
+        <!-- Validando usuario logueado boton salir --> 
+        <% if current_user.nil? %>
+        <li class="nav-item active">
+          <a class="btn btn-success" href="<%= new_user_session_path %>">Iniciar sesion <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="btn btn-primary" href="<%= new_user_registration_path %>">Registrarse <span class="sr-only">(current)</span></a>
+        </li>
+        <% else %>
+        <li class="nav-item active">
+          <a class="btn btn-danger" href="<%= destroy_user_session_path %>" data-method="delete">Cerrar Sesion <span class="sr-only">(current)</span></a>
+        </li>
+        <% end %>
+        <!-- Terminando validacion --> 
+  </div>
+</nav>

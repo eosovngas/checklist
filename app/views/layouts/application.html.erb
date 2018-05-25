@@ -19,10 +19,13 @@
   </head>
 
   <body>
-
+    <!-- Llamando al Navbar desde la carpeta partial -->
+    <%= render :template => 'partials/_navbar' %>
     <!-- devise notificacion y alertas -->
-    <p class="notice"><%= notice %></p>
+    <p class="notice"><%= notice %></p> 
     <p class="alert"><%= alert %></p>
     <%= yield %>
+
+
   </body>
 </html>

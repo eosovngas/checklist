@@ -13,8 +13,20 @@
     <!-- Llamando al Navbar desde la carpeta partial -->
     <%= render :template => 'shared/_navbar' %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!-- monstrando noticias y alertas -->
+    <% flash.each do |key, value| %>
+      <div class="alert alert-dismissible alert-primary">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong class="notice"><%= notice %></strong>
+        <strong class="alert" ><%= alert %></strong>
+      </div>
+    <% end %>
+
+    <!-- ocultando las noticias y alertas --> 
+    <!--<div style= "<%= "display:none;" if notice.nil? && alert.nil? %>">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div> -->
     
     <%= yield %>
 
